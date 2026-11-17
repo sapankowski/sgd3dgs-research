@@ -1,0 +1,37 @@
+schema_version: 1
+experiment_id: replace-me
+title: Replace with a concise experiment title
+owner: person-3
+reviewer: person-6
+status: planned
+time_budget_hours: 6
+decision: >-
+  Name the project decision this evidence will change.
+hypothesis: >-
+  State one falsifiable expectation. Avoid goals such as "try SAGA".
+scene:
+  id: replace-me
+  manifest: data/scenes/replace-me/scene.json
+  source_sha256: replace-me
+method:
+  name: replace-me
+  repository: replace-me
+  commit: "0000000000000000000000000000000000000000"
+  code_license: verify-me
+  weights: null
+  weights_license: null
+environment:
+  operating_system: Ubuntu 22.04
+  gpu: replace-me
+  container_or_lock: replace-me
+command: replace-me
+metrics:
+  planned:
+    - runtime
+    - peak VRAM
+    - selected Gaussian count
+artifacts:
+  output_directory: artifacts/
+stopping_condition: >-
+  Define the time, quality, or failure threshold that ends the experiment.
+notes: []

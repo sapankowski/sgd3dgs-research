@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use SGD3DGS Research, cite this repository and every upstream method/model used in your experiment."
+title: "SGD3DGS Research: Object-Level Gaussian Splatting Experiments"
+type: software
+authors:
+  - name: "SGD3DGS Contributors"
+repository-code: "https://github.com/sapankowski/sgd3dgs-research"
+license: MIT
+version: 0.1.0
+date-released: 2026-11-17

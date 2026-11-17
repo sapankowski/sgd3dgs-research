@@ -1,0 +1,19 @@
+schema_version: 1
+updated: 2026-11-17
+projects:
+  gaussian-grouping:
+    url: https://github.com/lkeab/gaussian-grouping.git
+    commit: 0ab60afed3385b717c985af1d30a20f7b0884c89
+    license: Apache-2.0-root-with-research-only-rasterizer
+    location: .external/gaussian-grouping
+    integration: experiment-only
+  saga:
+    url: https://github.com/Jumpat/SegAnyGAussians.git
+    commit: 2d4c5d77c857c956d747e4775d3d72c4ec5dfe16
+    license: Apache-2.0-root-with-nested-license-audit-required
+    location: .external/saga
+    integration: experiment-only
+application_contract:
+  repository: https://github.com/sapankowski/sgd3dgs-app.git
+  schema_version: "0.1"
+  integration: validated-artifact-only

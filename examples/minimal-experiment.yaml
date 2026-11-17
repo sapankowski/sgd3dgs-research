@@ -1,0 +1,37 @@
+schema_version: 1
+experiment_id: fixture-saga-chair
+title: Minimal SAGA experiment fixture
+owner: person-3
+reviewer: person-6
+status: planned
+time_budget_hours: 6
+decision: Decide whether SAGA can provide the first editor-compatible object mask.
+hypothesis: >-
+  A prepared SAGA run will export a non-empty chair mask aligned with the exact
+  source Gaussian ordering within the weekly time budget.
+scene:
+  id: public-room-fixture
+  manifest: /shared/scenes/public-room/scene.json
+  source_sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+method:
+  name: saga-v2
+  repository: https://github.com/Jumpat/SegAnyGAussians
+  commit: 2d4c5d77c857c956d747e4775d3d72c4ec5dfe16
+  code_license: Apache-2.0 root; nested dependencies require audit
+  weights: prepared upstream checkpoint
+  weights_license: verify before the real run
+environment:
+  operating_system: Ubuntu 22.04
+  gpu: NVIDIA GPU with at least 24 GB VRAM
+  container_or_lock: environments/saga-v2/lock-to-be-recorded
+command: python saga_gui.py --model_path /shared/scenes/public-room/model
+metrics:
+  planned:
+    - runtime
+    - peak VRAM
+    - selected Gaussian count
+artifacts:
+  output_directory: artifacts/
+stopping_condition: Stop after six hours or two failures at the documented smoke test.
+notes:
+  - Metadata-only fixture; paths and checksums are not real assets.

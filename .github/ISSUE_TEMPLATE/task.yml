@@ -1,0 +1,44 @@
+name: Weekly research task
+description: A bounded Wednesday-to-Tuesday research or adapter outcome
+title: "[Task]: "
+labels: ["task"]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        A core task should fit 5–8 hours and produce inspectable evidence by the
+        Tuesday meeting. Split larger work before starting.
+  - type: input
+    id: outcome
+    attributes:
+      label: Observable outcome
+      description: What artifact, adapter, environment result, metric, or decision will exist?
+    validations:
+      required: true
+  - type: input
+    id: owner
+    attributes:
+      label: Owner and reviewer
+      placeholder: Owner @name; reviewer @name
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: In scope and explicitly out of scope
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Definition of done and evidence
+      description: Commands, checksums, logs, metrics, views, or report.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and stopping condition
+      description: Include GPU/data needs and the point at which work stops or escalates.
+    validations:
+      required: true

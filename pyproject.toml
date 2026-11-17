@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sgd3dgs-research"
+version = "0.1.0"
+description = "Reproducible research utilities for object-level Gaussian Splatting editing"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+license = { text = "MIT" }
+dependencies = [
+  "pydantic>=2.10,<3",
+  "pyyaml>=6,<7",
+  "rich>=13.9,<15",
+  "typer>=0.15,<1",
+]
+
+[dependency-groups]
+dev = [
+  "mypy>=1.15,<2",
+  "pytest>=8.3,<9",
+  "pytest-cov>=6,<7",
+  "ruff>=0.11,<1",
+  "types-pyyaml>=6.0.12,<7",
+]
+
+[project.scripts]
+sgd3dgs-research = "sgd3dgs_research.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sgd3dgs_research"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = [".external"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+packages = ["sgd3dgs_research"]
+mypy_path = "src"
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-markers --cov=sgd3dgs_research --cov-report=term-missing"
+testpaths = ["tests"]

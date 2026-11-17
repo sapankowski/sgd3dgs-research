@@ -1,0 +1,45 @@
+name: Research experiment
+description: A time-boxed method comparison or feasibility question
+title: "[Experiment]: "
+labels: ["experiment"]
+body:
+  - type: input
+    id: decision
+    attributes:
+      label: Decision this experiment informs
+    validations:
+      required: true
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: Falsifiable hypothesis
+      description: State what result is expected and what would disprove it.
+    validations:
+      required: true
+  - type: input
+    id: owner
+    attributes:
+      label: Owner and reviewer
+      placeholder: Owner @name; reviewer @name
+    validations:
+      required: true
+  - type: textarea
+    id: inputs
+    attributes:
+      label: Inputs and provenance
+      description: Scene/checksum, object, upstream repository/commit, checkpoint/license.
+    validations:
+      required: true
+  - type: textarea
+    id: measurements
+    attributes:
+      label: Measurements and comparison baseline
+    validations:
+      required: true
+  - type: textarea
+    id: stopping
+    attributes:
+      label: Time budget and stopping condition
+      placeholder: Stop after 6 hours or after the documented smoke test fails twice.
+    validations:
+      required: true
