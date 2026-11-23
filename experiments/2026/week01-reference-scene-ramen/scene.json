@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.1",
+  "scene_id": "lerf-mask-ramen",
+  "display_name": "LERF-Mask ramen (Gaussian Grouping checkpoint)",
+  "coordinate_system": {
+    "up_axis": "-Z",
+    "handedness": "right",
+    "unit": "unknown",
+    "meters_per_unit": null
+  },
+  "source": {
+    "path": "reconstruction/point_cloud.ply",
+    "sha256": "d2fee173a0ec2e98e72fa45483f816ccbec86ab66825d00dc8213220a2a5866a",
+    "format": "3dgs-ply",
+    "gaussian_count": 1266122
+  },
+  "cameras": null,
+  "labels": null,
+  "objects": []
+}
