@@ -1,0 +1,59 @@
+{
+  "selection": {
+    "ids": [
+      108
+    ],
+    "threshold": 0.3,
+    "rule": "any selected class probability strictly greater than threshold",
+    "convex_hull_expansion": false,
+    "selected_count": 63202,
+    "selected_fraction": 0.04991778043506076,
+    "bounding_box": {
+      "min": [
+        -6.117307186126709,
+        -1.8601791858673096,
+        -6.371901512145996
+      ],
+      "max": [
+        7.593646049499512,
+        19.19167709350586,
+        7.672379016876221
+      ]
+    }
+  },
+  "cpu_export_seconds": 2.407423283999975,
+  "components": {
+    "voxel_size": 0.02,
+    "adjacency": 6,
+    "occupied_voxels": 18996,
+    "count": 3953,
+    "largest_gaussian_counts": [
+      55396,
+      644,
+      308,
+      136,
+      134
+    ],
+    "largest_fraction": 0.87649125027689
+  },
+  "views": [
+    {
+      "view": "test_0",
+      "iou": 0.9407922168172342,
+      "precision": 0.952123076923077,
+      "recall": 0.9875084340864745
+    },
+    {
+      "view": "test_1",
+      "iou": 0.9432670223237614,
+      "precision": 0.9498871083209428,
+      "recall": 0.9926656776734788
+    },
+    {
+      "view": "test_2",
+      "iou": 0.9212541644432266,
+      "precision": 0.9405848745435269,
+      "recall": 0.9781783100058191
+    }
+  ]
+}

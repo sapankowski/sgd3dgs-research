@@ -55,11 +55,6 @@ a reviewed mapping of background, movable objects and unknown IDs. Person 4 owns
 that conversion. Training can change Gaussian count and ordering through
 densification and pruning, so these labels belong to this trained PLY.
 
-The repository requires input/output checksums in experiment evidence. Record
-them separately when preparing and sharing artifacts, as in
-[VALIDATION.md](VALIDATION.md). The export program performs classification and
-writes results without runtime hashing.
-
 ## Verify
 
 Install pytest in the dedicated environment, then run from the repository root.

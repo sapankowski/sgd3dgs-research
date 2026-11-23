@@ -17,6 +17,23 @@ are not part of this repository's MIT-licensed source distribution.
 - Warning: bundled `diff-gaussian-rasterization` derives from the original
   Inria/MPII research-only/non-commercial Gaussian Splatting license.
 
+The legacy installation uses Python 3.8, PyTorch 1.12.1, CUDA toolkit
+11.3, and two compiled extensions. See the upstream
+[installation notes](https://github.com/lkeab/gaussian-grouping/blob/0ab60afed3385b717c985af1d30a20f7b0884c89/docs/install.md).
+
+| Component at the pinned revision | Terms or notice | Used in the CPU export |
+| --- | --- | --- |
+| [diff-gaussian-rasterization](https://github.com/lkeab/gaussian-grouping/blob/0ab60afed3385b717c985af1d30a20f7b0884c89/submodules/diff-gaussian-rasterization/LICENSE.md) | Inria/MPII Gaussian Splatting license for non-commercial research and evaluation | No |
+| [simple-knn](https://github.com/lkeab/gaussian-grouping/blob/0ab60afed3385b717c985af1d30a20f7b0884c89/submodules/simple-knn/setup.py) | Source header gives a non-commercial research and evaluation notice. The pinned component directory has no standalone LICENSE.md. | No |
+| [Tracking-Anything-with-DEVA](https://github.com/lkeab/gaussian-grouping/blob/0ab60afed3385b717c985af1d30a20f7b0884c89/Tracking-Anything-with-DEVA/LICENSE.md) | CC BY-NC-SA 4.0, for optional mask preparation | No |
+| [LaMa](https://github.com/lkeab/gaussian-grouping/blob/0ab60afed3385b717c985af1d30a20f7b0884c89/lama/LICENSE) | Apache-2.0, for inpainting | No |
+
+The native export uses separately installed PyTorch (BSD-3-Clause), NumPy
+(BSD-3-Clause with bundled notices) and plyfile (GPL-3.0-or-later). The
+experiment uses SplatTransform (MIT) for visualization. The
+[ramen experiment](experiments/2026/week01-gaussian-grouping-ramen/README.md)
+records checkpoint and dataset provenance separately.
+
 ### SAGA / Segment Any 3D Gaussians
 
 - Upstream: <https://github.com/Jumpat/SegAnyGAussians>
