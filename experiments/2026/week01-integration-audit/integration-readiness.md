@@ -13,6 +13,20 @@ This checklist records present facts. It is not an implementation handoff.
 - [x] Reported mask counts, spatial statistics and three-view metrics
 - [x] Visualization preparation and camera-track procedure
 - [x] Dependency and licensing notes
+- [x] SAGA fallback experiment record and exact environment
+- [x] SAGA compressed per-Gaussian mask
+- [x] SAGA selection receipt, clicks, hashes and spatial statistics
+- [x] SAGA three-view render files and comparison sheet
+- [x] Scripts for SAGA training adaptations, selection and mask unpacking
+
+## Reconstructed locally but intentionally ignored by Git
+
+- [x] SAGA Boolean `mask.npy` — 693,896 entries, 74,617 selected
+- [x] SAGA uint16 `object_id.npy` — values 0 and 1
+- [x] Local verification receipt with matching NumPy hashes
+
+These files are under
+`data/scenes/tandt-truck-windows-7000/runs/saga/person3-week1/`.
 
 ## Not yet available through shared storage
 
@@ -24,6 +38,9 @@ This checklist records present facts. It is not an implementation handoff.
 - [ ] Export `report.json` and logs
 - [ ] Source, mask and overlay renders
 - [ ] Artifact checksum inventory
+- [ ] Exact SAGA truck source PLY
+- [ ] SAGA feature PLY and `scale_gate.pt`
+- [ ] SAGA training and feature checkpoints/logs
 
 ## Not yet implemented or demonstrated
 
@@ -35,7 +52,9 @@ This checklist records present facts. It is not an implementation handoff.
 - [ ] Translation, rotation and undo of the masked bowl
 - [ ] Matched second-method comparison
 - [ ] Supported segmentation-baseline decision
+- [ ] SAGA mask alignment verified against its exact source PLY
+- [ ] Coordinator visual inspection of SAGA comparison and held-out renders
 
 The next claim that can be independently strengthened is artifact availability:
-publish the immutable reference and run outputs with checksums, then rerun the
-pending checks listed in `acceptance-checks.json`.
+publish the immutable reference and run outputs with checksums, obtain the exact
+SAGA source PLY, and rerun the pending checks in `acceptance-checks.json`.

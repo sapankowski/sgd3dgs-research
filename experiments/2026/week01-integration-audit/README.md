@@ -4,10 +4,11 @@
 
 This Person 6 record consolidates what the repository proves about the accepted
 `lerf-mask-ramen` reference scene and yellow-bowl target as of 2026-11-24. It
-reviews the two Week 1 research contributions without replacing their reports:
+reviews three Week 1 research contributions without replacing their reports:
 
 - [reference-scene PR #2](https://github.com/sapankowski/sgd3dgs-research/pull/2);
-- [Gaussian Grouping PR #1](https://github.com/sapankowski/sgd3dgs-research/pull/1).
+- [Gaussian Grouping PR #1](https://github.com/sapankowski/sgd3dgs-research/pull/1);
+- [SAGA truck PR #8](https://github.com/sapankowski/sgd3dgs-research/pull/8).
 
 The audit deliberately does not define a SAGA procedure, prepare a meeting
 script, implement the Week 2 converter, or claim that unavailable large
@@ -37,12 +38,17 @@ artifact-level checksum check after the PLY and mask are published.
 | Person 4 experiment record | Valid | `sgd3dgs-research validate-experiment` |
 | Reference `scene.json` structure | Valid | App schema 0.1 validation without external file checks |
 | PLY identity across reports | Consistent | Same SHA-256 and Gaussian count in both records |
-| PR reviews | Approved | Submitted by repository owner; neither PR merged |
+| SAGA experiment record | Valid | `sgd3dgs-research validate-experiment` |
+| SAGA scripts | Pass | Python compile plus Ruff lint and format checks |
+| SAGA packed mask | Verified | 693,896 entries, 74,617 selected, recorded packed checksum |
+| SAGA NumPy reconstruction | Verified | Boolean mask and uint16 object-ID hashes match the record |
+| PR reviews | Complete | PRs #1/#2 approved; PR #8 has no blocking findings but cannot be self-approved; no contribution merged |
 
-The full file check, reported selected count, spatial-component measurements,
-and rendered overlays depend on large files that are not yet available from
-shared storage. They remain reported evidence rather than independently
-verified evidence. See [acceptance-checks.json](acceptance-checks.json).
+The ramen full-file check, Gaussian Grouping measurements, and exact SAGA
+source-PLY alignment depend on large files that are not yet available from
+shared storage. The committed SAGA packed mask is independently verified, but
+its spatial relationship to the truck cannot be proven until the exact source
+PLY is available. See [acceptance-checks.json](acceptance-checks.json).
 
 ## Current result
 
@@ -53,24 +59,34 @@ reproducible fallback, not yet a supported app artifact. The same report finds
 largest component. The mask therefore needs inspection before object movement;
 strong rendered overlap does not prove a spatially clean object.
 
-The baseline decision remains deferred until a second method has comparable
-evidence. Missing values remain explicit in [comparison.yaml](comparison.yaml).
+SAGA reports a truck mask selecting 74,617 of 693,896 Gaussians (10.75%) from
+13 positive clicks in four views. Selection/export took 4.48 seconds with
+626 MiB peak PyTorch allocation. Its compressed mask, exact reconstructed-array
+hashes, environment and three held-out render sets are committed. The source
+PLY remains external, and the coordinator's visual review is still pending.
+
+The baseline decision remains deferred because SAGA used a different scene and
+object. Cross-scene percentages, component counts and image quality are not a
+matched comparison. Missing values remain explicit in
+[comparison.yaml](comparison.yaml).
 
 ## Mask-inspection tool decision
 
 No additional inspection tool is added in this branch.
 
-PR #1 already contains:
+PRs #1 and #8 already contain:
 
 - selected count, fraction, bounds and component measurements;
 - three-view IoU, precision and recall;
 - `prepare_mask.py`, which creates a black/white visualization PLY;
-- a documented SplatTransform camera track and rendering procedure.
+- a documented SplatTransform camera track and rendering procedure;
+- SAGA's checksum-checked `unpack_mask.py` and committed packed mask;
+- committed SAGA held-out render evidence.
 
 A second utility would duplicate these functions and still could not display or
-verify the actual result without the external PLY and mask. Reconsider a
-method-neutral command only after at least two methods produce accessible masks
-and duplicated inspection steps become a demonstrated maintenance problem.
+verify the Gaussian Grouping result without its external PLY and mask.
+Reconsider a method-neutral command only after that mask is published and
+duplicated inspection steps become a demonstrated maintenance problem.
 
 ## Week 1 completion assessment
 
@@ -81,7 +97,9 @@ and duplicated inspection steps become a demonstrated maintenance problem.
 | Produce one real per-Gaussian mask | Reported complete; artifact publication pending |
 | Record Gaussian Grouping environment, runtime and licensing | Complete |
 | Measure visible and spatial failure modes | Complete for Gaussian Grouping |
-| Produce a matched second-method result | Pending outside this audit |
+| Reproduce SAGA on a public fallback | Complete on the truck scene |
+| Verify a committed SAGA mask | Complete except source-Ply alignment |
+| Produce a matched second-method result | Pending; current scenes differ |
 | Convert to canonical `object_id.npy` | Pending |
 | Validate a complete package with real files | Pending shared artifacts |
 | Select and move the object in the app | Pending |
@@ -101,3 +119,9 @@ App:
 - [#1 Validate Gaussian count against the PLY header](https://github.com/sapankowski/sgd3dgs-app/issues/1)
 - [#2 Verify PLY ordering and extra-property preservation](https://github.com/sapankowski/sgd3dgs-app/issues/2)
 - [#3 Load labels and select the yellow bowl](https://github.com/sapankowski/sgd3dgs-app/issues/3)
+
+## Artifact storage design
+
+The two-scene Hugging Face layout, required checksums, publication rules and
+files still needed from contributors are in
+[huggingface-artifacts.md](huggingface-artifacts.md).
