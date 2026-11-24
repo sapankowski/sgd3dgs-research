@@ -1,0 +1,54 @@
+{
+  "audit_date": "2026-11-24",
+  "reference": {
+    "scene_id": "lerf-mask-ramen",
+    "target": "yellow bowl",
+    "source_sha256": "d2fee173a0ec2e98e72fa45483f816ccbec86ab66825d00dc8213220a2a5866a",
+    "gaussian_count": 1266122
+  },
+  "verified": [
+    {
+      "check": "person_5_github_ci",
+      "result": "pass",
+      "detail": "Research repository check and structure jobs succeeded."
+    },
+    {
+      "check": "person_4_github_ci",
+      "result": "pass",
+      "detail": "Research repository check and structure jobs succeeded."
+    },
+    {
+      "check": "exporter_synthetic_tests",
+      "result": "pass",
+      "detail": "Three tests passed with Python 3.12, PyTorch 2.6.0, NumPy 2.5.5 and plyfile 1.1.5."
+    },
+    {
+      "check": "person_5_experiment_schema",
+      "result": "pass",
+      "detail": "The repository experiment validator accepted the record."
+    },
+    {
+      "check": "person_4_experiment_schema",
+      "result": "pass",
+      "detail": "The repository experiment validator accepted the record."
+    },
+    {
+      "check": "scene_manifest_schema",
+      "result": "pass",
+      "detail": "The app validator accepted schema 0.1 with external file checking disabled."
+    },
+    {
+      "check": "cross_record_source_identity",
+      "result": "pass",
+      "detail": "Both records declare the same PLY SHA-256 and Gaussian count."
+    }
+  ],
+  "requires_external_artifacts": [
+    "recalculate the real PLY checksum and header count",
+    "recalculate mask length, dtype, selected count and checksum",
+    "recalculate bounds and spatial components",
+    "inspect source, mask and overlay renders",
+    "repeat the complete classifier export from the official checkpoint",
+    "validate the complete scene package with --check-files"
+  ]
+}

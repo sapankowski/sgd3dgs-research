@@ -1,0 +1,48 @@
+schema_version: 1
+experiment_id: week01-integration-audit
+title: Audit the Week 1 ramen scene and Gaussian Grouping evidence
+owner: person-6
+reviewer: sapankowski
+status: completed
+time_budget_hours: 6
+decision: >-
+  Accept ramen and the yellow bowl as the reference, retain Gaussian Grouping
+  as a reproducible fallback, and defer the supported-baseline decision.
+hypothesis: >-
+  The two Week 1 contributions identify the same source PLY and contain enough
+  repository evidence to accept their bounded outputs without claiming that
+  unavailable large artifacts were independently reproduced.
+scene:
+  id: lerf-mask-ramen
+  manifest: experiments/2026/week01-reference-scene-ramen/scene.json
+  source_sha256: d2fee173a0ec2e98e72fa45483f816ccbec86ab66825d00dc8213220a2a5866a
+method:
+  name: Cross-contribution evidence audit
+  repository: https://github.com/sapankowski/sgd3dgs-research
+  commit: 41a0125512a7e0ddb04ff7d301f6fe6a02d89393
+  code_license: MIT
+  weights: null
+  weights_license: null
+environment:
+  operating_system: macOS; GitHub-hosted Ubuntu CI for contributor branches
+  gpu: none required for repository-contained verification
+  container_or_lock: repository uv.lock plus isolated exporter test dependencies
+command: >-
+  make verify; validate both experiment records; validate the scene structure;
+  run scripts/gaussian_grouping/test_export_labels.py in its documented environment
+metrics:
+  planned:
+    - repository CI conclusions
+    - experiment-record validity
+    - scene-schema validity
+    - exporter unit-test result
+    - cross-record source checksum and Gaussian-count consistency
+artifacts:
+  output_directory: artifacts/week01-integration-audit/
+stopping_condition: >-
+  Stop after all repository-contained evidence is checked and every assertion
+  requiring unavailable external files is marked as pending.
+notes:
+  - PR 1 and PR 2 were approved but intentionally not merged during this audit.
+  - Real PLY, mask arrays, logs and rendered overlays were not available locally.
+  - No additional mask-inspection utility was justified by the current evidence.
