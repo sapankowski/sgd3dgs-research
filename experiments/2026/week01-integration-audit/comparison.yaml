@@ -1,0 +1,61 @@
+comparison_id: week01-segmentation-evidence
+reviewed_on: 2026-11-24
+reference:
+  scene_id: lerf-mask-ramen
+  target: yellow bowl excluding food
+  source_sha256: d2fee173a0ec2e98e72fa45483f816ccbec86ab66825d00dc8213220a2a5866a
+  gaussian_count: 1266122
+methods:
+  gaussian_grouping:
+    evidence_status: measured-on-prepared-checkpoint
+    source_pr: https://github.com/sapankowski/sgd3dgs-research/pull/1
+    interaction: native identity class 108, threshold 0.3
+    selected_gaussians: 63202
+    selected_fraction: 0.04991778043506076
+    cpu_export_seconds: 2.407423283999975
+    mean_iou_three_views: 0.9351044851944076
+    spatial_components: 3953
+    largest_component_fraction: 0.87649125027689
+    canonical_object_id: false
+    complete_app_package: false
+    external_artifacts_available_to_auditor: false
+    limitations:
+      - class selection and evaluation use the same three annotated views
+      - rim and table leakage are reported
+      - many small spatial components are reported
+  saga:
+    evidence_status: measured-on-different-fallback-scene
+    source_pr: https://github.com/sapankowski/sgd3dgs-research/pull/8
+    scene_id: tandt-truck-windows-7000
+    target: truck
+    source_sha256: f7ac2043fa1654fe381eff7e4956b5ca25a6d15a85241a8ccad30509aa489a48
+    gaussian_count: 693896
+    interaction: 13 positive clicks in four views, scale 0.5, threshold 0.8
+    selected_gaussians: 74617
+    selected_fraction: 0.10753340558239274
+    selection_export_seconds: 4.477193300030194
+    peak_torch_vram_bytes: 656371200
+    spatial_components: 57
+    largest_component_points: 72527
+    outside_largest_component_points: 2090
+    held_out_views: 3
+    view_metrics: null
+    packed_mask_committed: true
+    reconstructed_mask_hash_verified: true
+    reconstructed_object_id_hash_verified: true
+    canonical_object_id_values: [0, 1]
+    complete_app_package: false
+    exact_source_ply_available_to_auditor: false
+    coordinator_visual_review: pending
+    limitations:
+      - different scene and target from the accepted ramen reference
+      - no reference 3D labels or numerical IoU
+      - reduced training iterations, quarter resolution and SAM ViT-B
+      - source and feature PLYs remain external
+decision:
+  reference_scene: accepted
+  target_object: accepted
+  gaussian_grouping_role: reproducible-fallback
+  saga_role: reproduced-fallback-on-different-scene
+  numerical_cross_method_comparison: invalid-until-scenes-match
+  supported_baseline: deferred

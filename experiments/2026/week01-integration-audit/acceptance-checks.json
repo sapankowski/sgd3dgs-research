@@ -1,0 +1,102 @@
+{
+  "audit_date": "2026-11-24",
+  "reference": {
+    "scene_id": "lerf-mask-ramen",
+    "target": "yellow bowl",
+    "source_sha256": "d2fee173a0ec2e98e72fa45483f816ccbec86ab66825d00dc8213220a2a5866a",
+    "gaussian_count": 1266122
+  },
+  "saga_fallback": {
+    "scene_id": "tandt-truck-windows-7000",
+    "target": "truck",
+    "source_sha256_expected": "f7ac2043fa1654fe381eff7e4956b5ca25a6d15a85241a8ccad30509aa489a48",
+    "gaussian_count": 693896
+  },
+  "verified": [
+    {
+      "check": "person_5_github_ci",
+      "result": "pass",
+      "detail": "Research repository check and structure jobs succeeded."
+    },
+    {
+      "check": "person_4_github_ci",
+      "result": "pass",
+      "detail": "Research repository check and structure jobs succeeded."
+    },
+    {
+      "check": "exporter_synthetic_tests",
+      "result": "pass",
+      "detail": "Three tests passed with Python 3.12, PyTorch 2.6.0, NumPy 2.5.5 and plyfile 1.1.5."
+    },
+    {
+      "check": "person_5_experiment_schema",
+      "result": "pass",
+      "detail": "The repository experiment validator accepted the record."
+    },
+    {
+      "check": "person_4_experiment_schema",
+      "result": "pass",
+      "detail": "The repository experiment validator accepted the record."
+    },
+    {
+      "check": "scene_manifest_schema",
+      "result": "pass",
+      "detail": "The app validator accepted schema 0.1 with external file checking disabled."
+    },
+    {
+      "check": "cross_record_source_identity",
+      "result": "pass",
+      "detail": "The ramen records declare the same PLY SHA-256 and Gaussian count."
+    },
+    {
+      "check": "saga_experiment_schema",
+      "result": "pass",
+      "detail": "The repository experiment validator accepted the SAGA record."
+    },
+    {
+      "check": "saga_script_quality",
+      "result": "pass",
+      "detail": "All SAGA contribution scripts compile and pass Ruff lint and format checks."
+    },
+    {
+      "check": "saga_packed_mask",
+      "result": "pass",
+      "detail": "Packed checksum and byte count match 693,896 one-bit entries."
+    },
+    {
+      "check": "saga_selected_count",
+      "result": "pass",
+      "detail": "The committed packed mask reconstructs exactly 74,617 selected entries."
+    },
+    {
+      "check": "saga_mask_npy_reconstruction",
+      "result": "pass",
+      "detail": "Reconstructed Boolean mask SHA-256 is 48b9a1baf2bdadf5c430ae5642993ecc9eb6f307d07f40f457272abe8ee606ff."
+    },
+    {
+      "check": "saga_object_id_npy_reconstruction",
+      "result": "pass",
+      "detail": "Reconstructed uint16 object-ID SHA-256 is 270580599c12d2709800d9c5770e8152fe521357112e9cc0ffc02326d4039681 and values are 0/1."
+    },
+    {
+      "check": "saga_pull_request_review",
+      "result": "pass",
+      "detail": "PR 8 has green CI and no blocking review findings. GitHub disallows formal approval because sapankowski also opened the PR."
+    }
+  ],
+  "ramen_requires_external_artifacts": [
+    "recalculate the real PLY checksum and header count",
+    "recalculate mask length, dtype, selected count and checksum",
+    "recalculate bounds and spatial components",
+    "inspect source, mask and overlay renders",
+    "repeat the complete classifier export from the official checkpoint",
+    "validate the complete scene package with --check-files"
+  ],
+  "saga_requires_external_artifacts_or_action": [
+    "obtain and hash the exact source PLY",
+    "verify source PLY vertex count and row alignment through unpack_mask.py",
+    "obtain and hash the feature PLY and scale-gate checkpoint",
+    "validate a complete truck scene package with --check-files",
+    "coordinator visually inspects the committed comparison and held-out renders"
+  ]
+}

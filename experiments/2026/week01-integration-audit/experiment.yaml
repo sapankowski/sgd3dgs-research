@@ -1,0 +1,53 @@
+schema_version: 1
+experiment_id: week01-integration-audit
+title: Audit the Week 1 scene, Gaussian Grouping and SAGA evidence
+owner: person-6
+reviewer: sapankowski
+status: completed
+time_budget_hours: 6
+decision: >-
+  Accept ramen and the yellow bowl as the reference, retain Gaussian Grouping
+  as a reproducible fallback, and defer the supported-baseline decision.
+hypothesis: >-
+  The three Week 1 contributions contain enough repository evidence to accept
+  their bounded outputs while keeping cross-scene comparison and unavailable
+  large-artifact claims explicitly unresolved.
+scene:
+  id: lerf-mask-ramen
+  manifest: experiments/2026/week01-reference-scene-ramen/scene.json
+  source_sha256: d2fee173a0ec2e98e72fa45483f816ccbec86ab66825d00dc8213220a2a5866a
+method:
+  name: Cross-contribution evidence audit
+  repository: https://github.com/sapankowski/sgd3dgs-research
+  commit: 41a0125512a7e0ddb04ff7d301f6fe6a02d89393
+  code_license: MIT
+  weights: null
+  weights_license: null
+environment:
+  operating_system: macOS; GitHub-hosted Ubuntu CI for contributor branches
+  gpu: none required for repository-contained verification
+  container_or_lock: repository uv.lock plus isolated exporter test dependencies
+command: >-
+  make verify; validate all three experiment records; validate the scene structure;
+  run scripts/gaussian_grouping/test_export_labels.py; validate the SAGA record,
+  scripts and packed-mask reconstruction in their documented environments
+metrics:
+  planned:
+    - repository CI conclusions
+    - experiment-record validity
+    - scene-schema validity
+    - exporter unit-test result
+    - cross-record source checksum and Gaussian-count consistency
+    - SAGA packed-mask count and reconstructed-array hashes
+artifacts:
+  output_directory: artifacts/week01-integration-audit/
+stopping_condition: >-
+  Stop after all repository-contained evidence is checked and every assertion
+  requiring unavailable external files is marked as pending.
+notes:
+  - PR 1 and PR 2 were approved but intentionally not merged during this audit.
+  - PR 8 passed CI and review without blocking findings; GitHub prevents self-approval.
+  - Ramen artifacts and both exact source PLYs were not available locally.
+  - SAGA arrays were reconstructed locally from the committed packed mask.
+  - SAGA visual review remains assigned to the project coordinator.
+  - No additional mask-inspection utility was justified by the current evidence.
