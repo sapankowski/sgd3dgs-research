@@ -1,0 +1,15 @@
+{
+  "dataset": "Tanks and Temples truck",
+  "archive_url": "https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/datasets/input/tandt_db.zip",
+  "archive_sha256": "816e62f22a161abbfe841d2a6b10cdf036e297c9fa289b3bfeee9c6ec526d7e1",
+  "archive_folder": "tandt/truck",
+  "images": 251,
+  "train_views": 219,
+  "held_out_views": 32,
+  "resolution": [245, 136],
+  "scene_iterations": 7000,
+  "vertex_count": 693896,
+  "source_ply": "point_cloud/iteration_7000/scene_point_cloud.ply",
+  "source_sha256": "f7ac2043fa1654fe381eff7e4956b5ca25a6d15a85241a8ccad30509aa489a48",
+  "sam_weights_sha256": "ec2df62732614e57411cdcf32a23ffdf28910380d03139ee0f4fcbe91eb8c912"
+}

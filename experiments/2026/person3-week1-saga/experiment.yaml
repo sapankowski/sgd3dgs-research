@@ -1,0 +1,39 @@
+schema_version: 1
+experiment_id: person3-week1-saga
+title: Windows SAGA reproduction on Tanks and Temples truck
+owner: person-3
+reviewer: person-4
+status: completed
+time_budget_hours: 6
+decision: Assess whether the pinned SAGA baseline can produce a point-order-aligned object mask on the contributor's Windows GPU.
+hypothesis: Multi-click SAGA will retain the truck cab, wheels and cargo bed across three held-out views with limited visible pavement leakage.
+scene:
+  id: tandt-truck-windows-7000
+  manifest: source.json
+  source_sha256: f7ac2043fa1654fe381eff7e4956b5ca25a6d15a85241a8ccad30509aa489a48
+method:
+  name: Segment Any 3D Gaussians v2
+  repository: https://github.com/Jumpat/SegAnyGaussians
+  commit: "2d4c5d77c857c956d747e4775d3d72c4ec5dfe16"
+  code_license: Apache-2.0 for SAGA; upstream Gaussian rasterizer components retain their research licenses.
+  weights: https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth
+  weights_license: Apache-2.0
+environment:
+  operating_system: Windows 11 x64, build 26200
+  gpu: NVIDIA GeForce RTX 5070 Ti Laptop GPU, 12227 MiB
+  container_or_lock: environment.txt
+command: See the commands and click coordinates in RESULTS.md.
+metrics:
+  planned:
+    - Runtime and peak allocated CUDA memory when measurable
+    - Source and result SHA-256
+    - Selected Gaussian count and fraction
+    - Axis-aligned bounds
+    - Three held-out renders
+artifacts:
+  output_directory: results/
+stopping_condition: Stop after exporting a reviewed nonempty binary mask with three held-out renders, or document a reproducible failure within the weekly budget.
+notes:
+  - The public truck scene is a provisional fallback because no shared scene was supplied.
+  - Windows CUDA 12.8, SAM ViT-B, quarter resolution and reduced iteration counts differ from upstream defaults.
+  - Visual review found residual background and missing or blurred regions at object boundaries.
