@@ -1,0 +1,46 @@
+schema_version: 1
+experiment_id: week01-reference-scene-ramen
+title: Package the ramen reference scene with a schema 0.1 manifest
+owner: person-4
+reviewer: sapankowski
+status: completed
+time_budget_hours: 6
+decision: >-
+  Choose the shared week-1 reference scene and bind it to an exact source PLY
+  so that segmentation labels from any method can be checked against it.
+hypothesis: >-
+  The official Gaussian Grouping ramen checkpoint can be described by a valid
+  schema 0.1 manifest whose source checksum and Gaussian count match the PLY
+  used for the week-1 Gaussian Grouping export.
+scene:
+  id: lerf-mask-ramen
+  manifest: experiments/2026/week01-reference-scene-ramen/scene.json
+  source_sha256: d2fee173a0ec2e98e72fa45483f816ccbec86ab66825d00dc8213220a2a5866a
+method:
+  name: Gaussian Grouping official checkpoint (packaging only, no training)
+  repository: https://github.com/lkeab/gaussian-grouping
+  commit: 0ab60afed3385b717c985af1d30a20f7b0884c89
+  code_license: Apache-2.0 at root, with separate terms for nested components
+  weights: https://huggingface.co/mqye/Gaussian-Grouping/blob/34cbf65561144792d7a1861b38274bd7be18c8bc/checkpoint/lerf_mask/ramen.zip
+  weights_license: Apache-2.0 declared by the checkpoint host repository
+environment:
+  operating_system: Windows 11
+  gpu: none
+  container_or_lock: sgd3dgs-app core environment (Python 3.12); inspect_scene.py uses the standard library only
+command: >-
+  sgd3dgs validate --check-files data/scenes/lerf-mask-ramen/scene.json &&
+  python -I inspect_scene.py reconstruction/point_cloud.ply source/ramen/sparse/0/images.bin
+metrics:
+  planned:
+    - source PLY checksum
+    - Gaussian count from the PLY header
+    - manifest validation result
+    - up-axis estimate from camera poses
+artifacts:
+  output_directory: data/scenes/lerf-mask-ramen/
+stopping_condition: >-
+  Stop when the manifest validates against the real files, or when the time
+  box expires and the blocker is documented.
+notes:
+  - The repository commit is the upstream reference revision; the commit that trained the checkpoint is unknown.
+  - Scene files stay local until a shared-storage location is agreed.
