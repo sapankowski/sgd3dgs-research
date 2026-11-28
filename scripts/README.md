@@ -8,6 +8,7 @@
   ignored `.external/` paths without overwriting existing checkouts.
 - `validate_with_app.sh`: validates a completed scene package using the sibling
   app's authoritative CLI.
+- `spatial_cleanup/`: CPU spatial-island candidate reports and three-view comparison.
 - `verify_repository.sh`: enforces the repository boundary and rejects tracked
   large/model/scene artifacts.
 
