@@ -19,3 +19,15 @@ jobs:
           enable-cache: true
       - run: ./scripts/uv.sh sync
       - run: make verify
+
+  spatial-cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -r scripts/spatial_cleanup/requirements.txt pytest ruff
+      - run: python -m ruff check scripts/spatial_cleanup
+      - run: python -m ruff format --check scripts/spatial_cleanup
+      - run: python -m pytest -o addopts= scripts/spatial_cleanup/test_analyze.py
