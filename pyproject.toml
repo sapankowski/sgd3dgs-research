@@ -10,6 +10,7 @@ readme = "README.md"
 requires-python = ">=3.11,<3.13"
 license = { text = "MIT" }
 dependencies = [
+  "numpy>=2,<3",
   "pydantic>=2.10,<3",
   "pyyaml>=6,<7",
   "rich>=13.9,<15",
